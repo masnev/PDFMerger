@@ -500,7 +500,7 @@ class tcpdi_parser {
             $v = $sarr[$key];
             if (($key == '/Type') AND ($v[0] == PDF_TYPE_TOKEN AND ($v[1] == 'XRef'))) {
                 $valid_crs = true;
-            } elseif (($key == '/Index') AND ($v[0] == PDF_TYPE_ARRAY AND count($v[1] >= 2))) {
+            } elseif (($key == '/Index') AND ($v[0] == PDF_TYPE_ARRAY AND count($v[1]) >= 2 )) {
                 // first object number in the subsection
                 $index_first = intval($v[1][0][1]);
                 // number of entries in the subsection
@@ -572,7 +572,7 @@ class tcpdi_parser {
                     switch ($predictor) {
                         case 1: // No prediction (equivalent to PNG None)
                         case 10: { // PNG prediction (on encoding, PNG None on all rows)
-                            $ddata[$k][$j] = $row[$i];
+                            $ddata[$k][$j] = $row[$i]??0;
                             break;
                         }
                         case 11: { // PNG prediction (on encoding, PNG Sub on all rows)
@@ -828,7 +828,7 @@ class tcpdi_parser {
                 break;
             }
             default: {
-                $frag = $data[$offset] . @$data[$offset+1] . @$data[$offset+2] . @$data[$offset+3];
+                $frag = ($data[$offset]??'') . ($data[$offset+1]??'') . ($data[$offset+2]??'') . ($data[$offset+3]??'');
                 switch ($frag) {
                     case 'endo':
                         // indirect object
