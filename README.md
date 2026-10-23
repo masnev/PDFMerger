@@ -1,3 +1,5 @@
+#Добавлена поддержка php 8.5
+
 #PDFMerger for PHP (PHP 5 and above up to PHP 7.1 and PHP 8 Compatible)
 
 PDFMerger created by Jarrod Nettles December 2009 jarrod@squarecrow.com
