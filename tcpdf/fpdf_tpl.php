@@ -275,7 +275,7 @@ class FPDF_TPL extends FPDF {
     public function SetFont($family, $style = '', $size = 0, $fontfile='', $subset='default', $out=true) {
         if (is_subclass_of($this, 'TCPDF')) {
         	$args = func_get_args();
-        	return call_user_func_array(array($this, 'TCPDF::SetFont'), $args);
+        	return call_user_func_array(array($this, 'SetFont'), $args);
         }
         
         parent::SetFont($family, $style, $size);
